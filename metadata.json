@@ -1,0 +1,6 @@
+{
+  "name": "Universal AI OS Template",
+  "description": "An immersive, high-performance universal AI Operating System template built with React, Tailwind CSS, Framer Motion, and 3D Spline integration.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
