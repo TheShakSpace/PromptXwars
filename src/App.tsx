@@ -13,10 +13,10 @@ import { Navbar } from "./components/common/navbar/Navbar";
 import { Sidebar } from "./components/common/sidebar/Sidebar";
 import { AITerminal } from "./components/common/terminal/AITerminal";
 import { SplineViewer } from "./components/common/spline/SplineViewer";
-import { HeroSection } from "./components/sections/landing/HeroSection";
-import { FeatureGrid } from "./components/sections/landing/FeatureGrid";
+import { Hero } from "./components/sections/landing/Hero";
 import { OSWorkspace } from "./components/sections/workspace/OSWorkspace";
 import { StatsOverview } from "./components/sections/dashboard/StatsOverview";
+import { Dashboard } from "./components/sections/dashboard/Dashboard";
 import { useLenis } from "./hooks/useLenis";
 import { motion, AnimatePresence } from "motion/react";
 
@@ -42,7 +42,7 @@ function AppContent() {
       <SceneManager />
 
       {/* 3. Global Floating Header */}
-      {!isIntroPlaying && <Navbar />}
+      {!isIntroPlaying && isImmersive && <Navbar />}
 
       {/* 4. Synaptic AI Shell Terminal Overlay (Cmd+K) */}
       {!isIntroPlaying && <AITerminal />}
@@ -68,13 +68,8 @@ function AppContent() {
                 transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
                 className="relative w-full flex flex-col"
               >
-                {/* Landing Sections */}
-                <div className="relative w-full">
-                  <HeroSection />
-                </div>
-                <div className="relative w-full bg-[#050505]/65 backdrop-blur-3xl border-t border-white/5 shadow-2xl">
-                  <FeatureGrid />
-                </div>
+                {/* Immersive Modular Landing Experience */}
+                <Hero />
               </motion.div>
             ) : (
               <motion.div
@@ -83,19 +78,9 @@ function AppContent() {
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 exit={{ opacity: 0, filter: "blur(10px)" }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full min-h-screen pt-24 px-6 flex flex-col lg:flex-row gap-6 relative"
+                className="w-full relative"
               >
-                {/* Left Side control rail */}
-                <Sidebar />
-
-                {/* Main dashboard work area */}
-                <div className="flex-1 lg:pl-86">
-                  {mode === OSMode.WORKSPACE ? (
-                    <OSWorkspace />
-                  ) : (
-                    <StatsOverview />
-                  )}
-                </div>
+                <Dashboard />
               </motion.div>
             )
           )}
