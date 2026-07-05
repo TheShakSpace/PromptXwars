@@ -25,6 +25,10 @@ import { AnimationProvider } from "./animations/AnimationProvider";
 import { BackgroundLayers } from "./animations/BackgroundLayers";
 import { TransitionManager } from "./animations/TransitionManager";
 
+// Production resilience imports
+import { GlobalErrorBoundary } from "./components/common/error/ErrorBoundary";
+import { OfflineIndicator } from "./components/common/offline/OfflineIndicator";
+
 // Inner core app block to consume context
 function AppContent() {
   const { mode } = useOS();
@@ -40,6 +44,9 @@ function AppContent() {
   return (
     <div className="relative min-h-screen text-white select-none overflow-x-hidden">
       
+      {/* 0. Realtime Network Connection Status Overlay */}
+      <OfflineIndicator />
+
       {/* 1. Custom Hardware Cursor */}
       <CustomCursor />
 
@@ -84,13 +91,15 @@ function AppContent() {
 
 export default function App() {
   return (
-    <AnimationProvider>
-      <OSProvider>
-        <IntroProvider>
-          <AppContent />
-        </IntroProvider>
-      </OSProvider>
-    </AnimationProvider>
+    <GlobalErrorBoundary>
+      <AnimationProvider>
+        <OSProvider>
+          <IntroProvider>
+            <AppContent />
+          </IntroProvider>
+        </OSProvider>
+      </AnimationProvider>
+    </GlobalErrorBoundary>
   );
 }
 
