@@ -9,7 +9,7 @@ import { useOS } from "../../../contexts/OSContext";
 import { 
   LayoutDashboard, Compass, Briefcase, MessageSquareText, 
   Radio, Zap, BarChart3, Database, History, Folder, Settings, 
-  ChevronRight, Sparkles 
+  ChevronRight, Sparkles, Palette
 } from "lucide-react";
 
 export enum SidebarTab {
@@ -23,6 +23,7 @@ export enum SidebarTab {
   KNOWLEDGE = "knowledge",
   HISTORY = "history",
   FILES = "files",
+  DESIGN_SYSTEM = "design_system",
   SETTINGS = "settings",
 }
 
@@ -46,6 +47,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
     { id: SidebarTab.KNOWLEDGE, label: "Knowledge", icon: Database, color: "#3B82F6" },
     { id: SidebarTab.HISTORY, label: "History", icon: History, color: "#64748B" },
     { id: SidebarTab.FILES, label: "Files Hub", icon: Folder, color: "#14B8A6" },
+    { id: SidebarTab.DESIGN_SYSTEM, label: "Design System", icon: Palette, color: "#A855F7" },
     { id: SidebarTab.SETTINGS, label: "Settings", icon: Settings, color: "#94A3B8" },
   ];
 

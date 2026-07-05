@@ -17,6 +17,14 @@ import { FileExplorer } from "./FileExplorer";
 import { SettingsPage } from "./Settings";
 import { CommandPalette } from "./CommandPalette";
 import { SearchOverlay } from "./SearchOverlay";
+import { PromptStudio } from "./PromptStudio";
+import { ChatWorkspace } from "./ChatWorkspace";
+import { AgentPanel } from "./AgentPanel";
+import { WorkflowCanvas } from "./WorkflowCanvas";
+import { KnowledgeBase } from "./KnowledgeBase";
+import { MemoryPanel } from "./MemoryPanel";
+import { VisionWorkspace } from "./VisionWorkspace";
+import { DesignSystem } from "./DesignSystem";
 import { Sparkles, MessageSquare, Menu, X, ArrowLeft } from "lucide-react";
 
 export function Dashboard() {
@@ -49,10 +57,21 @@ export function Dashboard() {
   const renderActiveContent = () => {
     switch (activeTab) {
       case SidebarTab.DASHBOARD:
-      case SidebarTab.WORKSPACE:
         return <Workspace />;
+      case SidebarTab.WORKSPACE:
+        return <PromptStudio />;
+      case SidebarTab.AI_CHAT:
+        return <ChatWorkspace />;
+      case SidebarTab.AGENTS:
+        return <AgentPanel />;
+      case SidebarTab.AUTOMATION:
+        return <WorkflowCanvas />;
       case SidebarTab.ANALYTICS:
         return <Analytics />;
+      case SidebarTab.KNOWLEDGE:
+        return <KnowledgeBase />;
+      case SidebarTab.HISTORY:
+        return <MemoryPanel />;
       case SidebarTab.PROJECTS:
         return (
           <div className="max-w-2xl mx-auto py-4">
@@ -60,14 +79,21 @@ export function Dashboard() {
           </div>
         );
       case SidebarTab.FILES:
-        return <FileExplorer />;
+        return (
+          <div className="flex flex-col gap-6">
+            <FileExplorer />
+            <VisionWorkspace />
+          </div>
+        );
       case SidebarTab.SETTINGS:
         return <SettingsPage />;
+      case SidebarTab.DESIGN_SYSTEM:
+        return <DesignSystem />;
       default:
         // Elegant fallback card for un-implemented items
         return (
           <div className="glass-panel p-8 rounded-3xl border border-white/5 bg-[#050505]/40 backdrop-blur-xl text-center flex flex-col items-center justify-center gap-4 py-20 select-none">
-            <div className="w-12 h-12 rounded-2xl bg-[#4F8CFF]/10 border border-[#4F8CFF]/20 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-2xl bg-[#4F8CFF]/10 border border-white/20 flex items-center justify-center">
               <Sparkles className="w-6 h-6 text-[#4F8CFF] animate-pulse" />
             </div>
             <h2 className="text-lg font-black text-white/90 uppercase tracking-widest">AUTONOMOUS SYNAPSES LINKED</h2>
