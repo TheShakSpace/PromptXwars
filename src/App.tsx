@@ -20,6 +20,11 @@ import { Dashboard } from "./components/sections/dashboard/Dashboard";
 import { useLenis } from "./hooks/useLenis";
 import { motion, AnimatePresence } from "motion/react";
 
+// central animation & sound engine imports
+import { AnimationProvider } from "./animations/AnimationProvider";
+import { BackgroundLayers } from "./animations/BackgroundLayers";
+import { TransitionManager } from "./animations/TransitionManager";
+
 // Inner core app block to consume context
 function AppContent() {
   const { mode } = useOS();
@@ -52,39 +57,26 @@ function AppContent() {
         <SplineViewer />
       </div>
 
-      {/* Ambient background spatial grid overlays */}
-      <div className="fixed inset-0 bg-[#050505]/40 backdrop-blur-[1px] pointer-events-none -z-10" />
+      {/* 8-layer hardware accelerated premium atmospheric overlays */}
+      <BackgroundLayers />
 
-      {/* 6. Dynamic Layout Routing */}
+      {/* 6. Dynamic Layout Routing with 3D Lens Shift Transitions */}
       <main className="relative min-h-screen">
-        <AnimatePresence mode="wait">
-          {!isIntroPlaying && (
-            isImmersive ? (
-              <motion.div
-                key="immersive-view"
-                initial={{ opacity: 0, filter: "blur(15px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-                className="relative w-full flex flex-col"
-              >
-                {/* Immersive Modular Landing Experience */}
+        {!isIntroPlaying && (
+          isImmersive ? (
+            <TransitionManager stateKey="immersive-view">
+              <div className="relative w-full flex flex-col">
                 <Hero />
-              </motion.div>
-            ) : (
-              <motion.div
-                key="workspace-view"
-                initial={{ opacity: 0, filter: "blur(10px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                exit={{ opacity: 0, filter: "blur(10px)" }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full relative"
-              >
+              </div>
+            </TransitionManager>
+          ) : (
+            <TransitionManager stateKey="workspace-view">
+              <div className="w-full relative">
                 <Dashboard />
-              </motion.div>
-            )
-          )}
-        </AnimatePresence>
+              </div>
+            </TransitionManager>
+          )
+        )}
       </main>
     </div>
   );
@@ -92,10 +84,13 @@ function AppContent() {
 
 export default function App() {
   return (
-    <OSProvider>
-      <IntroProvider>
-        <AppContent />
-      </IntroProvider>
-    </OSProvider>
+    <AnimationProvider>
+      <OSProvider>
+        <IntroProvider>
+          <AppContent />
+        </IntroProvider>
+      </OSProvider>
+    </AnimationProvider>
   );
 }
+
