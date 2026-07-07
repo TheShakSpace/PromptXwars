@@ -25,6 +25,7 @@ export enum SidebarTab {
   FILES = "files",
   DESIGN_SYSTEM = "design_system",
   SETTINGS = "settings",
+  IMPACT = "impact",
 }
 
 interface SidebarProps {
@@ -47,6 +48,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
     { id: SidebarTab.KNOWLEDGE, label: "Knowledge", icon: Database, color: "#3B82F6" },
     { id: SidebarTab.HISTORY, label: "History", icon: History, color: "#64748B" },
     { id: SidebarTab.FILES, label: "Files Hub", icon: Folder, color: "#14B8A6" },
+    { id: SidebarTab.IMPACT, label: "Platform Impact", icon: Sparkles, color: "#F43F5E" },
     { id: SidebarTab.DESIGN_SYSTEM, label: "Design System", icon: Palette, color: "#A855F7" },
     { id: SidebarTab.SETTINGS, label: "Settings", icon: Settings, color: "#94A3B8" },
   ];

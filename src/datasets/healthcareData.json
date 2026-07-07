@@ -1,0 +1,19 @@
+{
+  "stats": [
+    { "id": "hc-1", "label": "CLINICAL TRIAGE LATENCY", "value": "180 ms", "change": "-15.2%", "isPositive": true, "metricType": "time" },
+    { "id": "hc-2", "label": "DIAGNOSTIC ACCURACY", "value": "99.2%", "change": "+0.4%", "isPositive": true, "metricType": "percentage" },
+    { "id": "hc-3", "label": "ICD-11 CODES LOADED", "value": "18,450", "change": "+2.4k", "isPositive": true, "metricType": "integer" }
+  ],
+  "tasks": [
+    { "id": "hct-1", "text": "Anonymize patient triage identifiers in pipeline buffer", "completed": true, "date": "Immediate" },
+    { "id": "hct-2", "text": "Validate PubMed drug interaction references for Step-3", "completed": false, "date": "Today" },
+    { "id": "hct-3", "text": "Verify encrypted HIPAA datastore shards are active", "completed": false, "date": "Tomorrow" }
+  ],
+  "charts": [
+    { "timestamp": "08:00", "throughput": 85, "latency": 185, "tokens": 400 },
+    { "timestamp": "10:00", "throughput": 110, "latency": 175, "tokens": 580 },
+    { "timestamp": "12:00", "throughput": 130, "latency": 182, "tokens": 620 },
+    { "timestamp": "14:00", "throughput": 95, "latency": 188, "tokens": 450 },
+    { "timestamp": "16:00", "throughput": 140, "latency": 165, "tokens": 710 }
+  ]
+}

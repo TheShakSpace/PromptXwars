@@ -9,6 +9,7 @@ import { promptPresets } from "../data/promptPresets";
 import { useUIStore } from "./uiStore";
 import { useWorkspaceStore } from "./workspaceStore";
 import { useNotificationStore } from "./notificationStore";
+import { ModelRouter } from "../core/ModelRouter";
 
 interface HistoryState {
   terminalHistory: TerminalHistoryItem[];
@@ -147,10 +148,19 @@ Core Handshake Status: SECURE [0.0.0.0:3000]`;
         get().clearHistory();
         return;
 
-      default:
-        outputContent = `Synthesizing model query response for prompt [${trimmed}]...
-[${workspaceStore.activeModel}]: Connecting workspace parameters. Operational framework is fully customized. To integrate raw API callbacks, bind endpoints to '/api/gemini'.`;
+      default: {
+        try {
+          const res = await ModelRouter.routeCompletion({
+            modelId: workspaceStore.activeModel,
+            prompt: trimmed,
+          });
+          outputContent = `[${res.provider.toUpperCase()} (${res.modelId})]:\n${res.text}\n\n[Metrics] Latency: ${res.latencyMs}ms | Cost: $${res.costEstimate}`;
+        } catch (err: any) {
+          outputContent = `Error routing command completion: ${err.message}`;
+          isError = true;
+        }
         break;
+      }
     }
 
     const outputItem: TerminalHistoryItem = {

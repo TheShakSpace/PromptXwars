@@ -1,0 +1,23 @@
+{
+  "platformName": "Helios AI",
+  "shortName": "Helios",
+  "tagline": "Autonomous Synaptic OS Interface",
+  "description": "Premium industrial-grade agent orchestration and neural workflow suite.",
+  "companyName": "Helios Labs",
+  "version": "v2.5.4-PRO",
+  "activeTheme": "cyber",
+  "accentColor": "#4F8CFF",
+  "logoType": "vector",
+  "supportEmail": "shakshikumari2541@gmail.com",
+  "website": "https://ai.studio/build",
+  "defaultLocale": "en-US",
+  "features": {
+    "enableTerminal": true,
+    "enableSpline3D": true,
+    "enableMemoryPanel": true,
+    "enableKnowledgeBase": true,
+    "enableVoiceSession": true,
+    "enableExperimentalAgents": true,
+    "offlineBypass": true
+  }
+}

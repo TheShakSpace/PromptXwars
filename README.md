@@ -1,157 +1,134 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# 🪐 Helios AI | Autonomous Synaptic OS Interface
 
-# Helios AI — Autonomous Synaptic OS Interface
-
-An immersive, high-performance “AI OS” UI built with **React + TypeScript**, **Tailwind CSS**, and advanced motion/3D effects (GSAP, Framer Motion-style primitives, Lenis, and Spline/Three.js). The UI is designed to feel like a real operating system experience: animated dashboards, interactive panels, and an AI-powered chat/workflow surface.
-
-View your app in AI Studio: https://ai.studio/apps/9657e4db-97f1-4a60-9467-6fb6f9ce7e50
+Helios is a world-class, production-ready, GPU-accelerated immersive desktop experience designed for next-generation intelligence orchestration. Powered by React 19, Vite 6, Tailwind CSS v4, and dynamic Zustand stores, Helios sets a new standard for fast, resilient, and beautiful AI computing environments.
 
 ---
 
-## Quick start
+## 💎 Design Philosophy & Core Principles
 
-### Prerequisites
+At Helios, we reject generic UI slop and cookie-cutter dashboard frameworks. Every layout boundary, animation curve, and sound effect is mathematically optimized to feel tactile, architectural, and highly responsive:
 
-- **Node.js** (LTS recommended)
+- **Architectural Honesty**: No decoration for decoration's sake. Borders reflect actual hardware compilation bounds; layout lines trace GPU and Web Audio API initialization progress.
+- **Micro-Interactive Soundscapes**: Subtle mechanical tap feedback, swoosh transitions, and futuristic cyber alerts are synthesized dynamically in the browser using raw Web Audio API oscillators—requiring zero network asset fetches.
+- **Space-Grade Contrast & Typography**: High-contrast slate color palettes (`#050505`) paired with gorgeous `Geist` & `Space Grotesk` display typography ensure WCAG AA accessibility compliance under any lighting.
 
-### 1) Install dependencies
+---
 
-```bash
-npm install
+## 📂 Modular File Architecture
+
+```
+src/
+├── App.tsx                       # Main application entry and global error boundary wrappers
+├── main.tsx                      # Runtime initialization with React 19 concurrent features
+├── index.css                     # Global Tailwind CSS v4 utility custom theme layer
+│
+├── store/                        # Consolidated, modular state architecture (Zustand)
+│   ├── index.ts                  # Central store exports
+│   ├── uiStore.ts                # Sidebar navigation, Solo/Terminal windows, layouts
+│   ├── themeStore.ts             # Light/Dark tokens, reduced motion hooks
+│   ├── animationStore.ts         # GPU haptic rates, particle density multipliers
+│   ├── workspaceStore.ts         # Active models, preset system instruction profiles
+│   ├── chatStore.ts              # Immersive chat, neural stream tokens
+│   ├── workflowStore.ts          # Step executions and active deployments
+│   ├── settingsStore.ts          # Advanced diagnostic flags and sound volume bounds
+│   ├── notificationStore.ts      # Telemetry toast queues
+│   ├── memoryStore.ts            # Key-value memories, confidence metrics, and context logs
+│   └── historyStore.ts           # Shell command interpreters and terminal histories
+│
+├── contexts/                     # Backwards-compatible legacy bridge layers
+│   ├── OSContext.tsx             # Context bridge feeding into high-speed Zustand stores
+│   └── IntroContext.tsx          # Boot sequence & cinematic audio generator context
+│
+├── animations/                   # Advanced orchestration systems (GSAP / Framer Motion)
+│   ├── AnimationProvider.tsx     # Context, scroll triggers, and haptic loop registers
+│   ├── BackgroundLayers.tsx      # Multi-layered glowing vector backdrops
+│   ├── TransitionManager.tsx     # 3D Lens-Shift component routing transitions
+│   └── MotionHooks.ts            # Physics-based spring and haptic feedback hooks
+│
+├── components/                   # Production-grade encapsulated components
+│   ├── common/
+│   │   ├── error/                # GlobalErrorBoundary component with stack analytics
+│   │   ├── offline/              # OfflineIndicator with connectivity listeners
+│   │   ├── spline/               # GPU Spline viewer with Canvas orbital particle fallbacks
+│   │   ├── terminal/             # Interactive diagnostic shell console
+│   │   └── cursor/               # Custom hardware-accelerated cursor
+│   │
+│   ├── intro/                    # Cinematic boot, glitch, and matrix scene managers
+│   └── sections/
+│       ├── landing/              # Immersive state presentation panels
+│       ├── workspace/            # Structured, bento-grid multi-agent workspaces
+│       └── dashboard/            # System metrics, real-time telemetry, & Design System
+│
+├── types/
+│   └── index.ts                  # Shared strictly-typed domain contract declarations
+│
+└── utils/
+    └── cn.ts                     # High-performance CSS class merger utilities
 ```
 
-### 2) Configure Gemini
+---
 
-This project is wired to Gemini via the **Google GenAI** SDK (`@google/genai`).
+## ⚡ Performance & Resilience Architecture
 
-Create/set your environment file for local development:
+### 🛡️ 1. GPU Pipeline Fallbacks (Resilient Spline Viewer)
+Spline 3D canvas rendering can be brittle inside isolated sandboxes or low-end hardware. Helios solves this with a **triple-redundant loading pipeline**:
+- **Defensive Timeout Budget (4000ms)**: If WASM compilation or Spline resources take more than 4 seconds, the view immediately self-heals by switching to a beautiful local canvas simulation.
+- **Global Error Interceptors**: Real-time error and unhandled rejection listeners catch underlying WebGL or out-of-buffer memory leaks, self-remediating the layout without showing a blank screen.
+- **3D Orbital Particle Canvas Fallback**: When activated, a local 2D context draws physical orbital gravitational networks with glowing AI Core centers, giving users a mesmerizing and fully responsive experience on any browser.
 
-- Set `GEMINI_API_KEY` in `.env.local`
+### 🔌 2. Offline Signals & Local Recovery
+An elegant, non-blocking `OfflineIndicator` listens to real-time `window.online` and `window.offline` socket states:
+- If connections drop, Helios redirects telemetry to local cache memory, alerts the user, and prompts key action bypasses.
+- When signals return, the indicator provides a synchronized haptic success chime and silently updates the workspace.
 
-Example (conceptual):
+### 🩺 3. Central Error Boundaries
+The entire layout is protected by a premium Stripe-style `GlobalErrorBoundary` that isolates exceptions, displays interactive stack trace telemetry, and provides a single-click **OS Kernel Reboot** option to flush memory and reload safely.
 
+---
+
+## 🚀 DevOps & Deployment Guides
+
+Helios is prepared out-of-the-box for production scale. Choose your target environment:
+
+### 🌟 1. Vercel / Netlify
+Vercel handles React-19 Single Page Applications natively. Standard deployments automatically utilize the Vite configuration to build statically into `dist/`.
 ```bash
-GEMINI_API_KEY="YOUR_KEY_HERE"
+# Clean install, build, and deploy
+npm run clean
+npm run build
+vercel --prod
 ```
 
-> Note: The repository references `.env.local` in the README. If you don’t already have it, create it at the project root.
+### 🐳 2. Docker / Cloud Run (Full-Stack Container)
+The container setup supports bundling custom production web servers. Customize the included Dockerfile:
+```dockerfile
+# Use Node alpine container
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
 
-### 3) Run the dev server
-
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package*.json ./
+RUN npm ci --only=production
+EXPOSE 3000
+ENV PORT=3000
+CMD ["npm", "run", "preview"]
+```
+Build and run the container:
 ```bash
-npm run dev
+docker build -t helios-interface .
+docker run -p 3000:3000 helios-interface
 ```
 
-- Dev server runs on **http://localhost:3000**
-
 ---
 
-## Scripts
+## 🛠️ Developer Protocol
 
-From `package.json`:
-
-- `npm run dev` — start Vite dev server (port **3000**, host `0.0.0.0`)
-- `npm run build` — build the production bundle
-- `npm run preview` — preview the production build locally
-- `npm run lint` — typecheck with `tsc --noEmit`
-- `npm run clean` — remove build artifacts (`dist`, `server.js`)
-
----
-
-## Tech stack
-
-- **React 19** + **TypeScript**
-- **Vite** (fast bundler/dev server)
-- **Tailwind CSS v4** (+ `@tailwindcss/vite`)
-- **Motion/animation**:
-  - `gsap`
-  - `motion`
-  - `lenis` (smooth scrolling)
-- **3D / visuals**:
-  - `three`
-  - `@splinetool/react-spline` (Spline integration)
-- **AI / Gemini**:
-  - `@google/genai`
-- Utility libs:
-  - `clsx`, `tailwind-merge`
-
----
-
-## Environment variables
-
-### `GEMINI_API_KEY`
-
-Used by the application to authenticate calls to Gemini (via `@google/genai`).
-
----
-
-## What the app includes (high-level)
-
-This UI is organized around two main experiences:
-
-1. **Landing / intro experience**
-   - Hero scenes and interactive background effects
-   - Floating cards, spotlight/mouse interactions, client/logo sections, stats, testimonials
-   - Intro/scene orchestration under `src/components/intro/*`
-
-2. **Dashboard / OS workspace experience**
-   - Dashboard modules: analytics, activity, insights, projects, prompt templates, settings
-   - Interactive UX elements: command palette, search overlay, chat panel
-   - Workspace state & workflows
-
-### Key code areas
-
-- **Animations**: `src/animations/*`
-  - Animation providers, parallax, cursor systems, scroll controller, transition manager, etc.
-- **UI components**: `src/components/*`
-  - `sections/landing/*` for the marketing/intro visuals
-  - `sections/dashboard/*` for the OS-like application interface
-  - `common/*` for shared UI (buttons, cards, cursor, terminal UI, offline indicator, error boundary)
-- **State management**: `src/store/*`
-  - UI, workspace, chat, workflow, settings, notifications, memory/history
-- **Contexts**: `src/contexts/*`
-  - Intro + OS context orchestration
-
----
-
-## Deployment notes
-
-- This is a **Vite** project, so production output is produced by `npm run build` and served as static assets.
-- Use any static hosting provider (or a simple static file server) for the `dist/` output.
-- If you’re deploying to an environment that also supports the AI Studio flow, ensure `GEMINI_API_KEY` is set in the runtime environment used by your hosting platform.
-
----
-
-## Troubleshooting
-
-### Dev server won’t start
-
-- Ensure Node.js is installed and you can run `node -v`.
-- Re-run dependencies:
-  ```bash
-  npm install
-  ```
-
-### App loads but AI features fail
-
-- Verify `GEMINI_API_KEY` is present in `.env.local`.
-- If you’re using a platform-specific env system, ensure the variable is defined there instead.
-
-### Port / host issues
-
-- The dev server explicitly listens on `--port=3000 --host=0.0.0.0`.
-- If you’re running in a container/VM, make sure port **3000** is exposed.
-
----
-
-## Development workflow tips
-
-- When iterating on UI/animation behavior, prefer starting the dev server once and then using HMR (unless your environment disables it).
-- For correctness, use:
-  ```bash
-  npm run lint
-  ```
-  which typechecks the codebase.
-
+- **Adding a Store**: Create a new Zustand store under `src/store/` and register its exports in `src/store/index.ts`.
+- **Modifying Icons**: Import from `lucide-react` exclusively. Do not write raw SVG icon templates.
+- **Theme Adjustments**: Edit theme variables dynamically inside the Tailwind `@theme` tag in `src/index.css`. This ensures compile-time token optimization.

@@ -1,0 +1,156 @@
+[
+  {
+    "id": "gemini-3.5-flash",
+    "name": "Gemini 3.5 Flash",
+    "provider": "gemini",
+    "capabilities": ["chat", "coding", "vision", "ocr", "summarization", "translation", "classification", "extraction", "planning", "research", "automation"],
+    "inputCostPerMillion": 0.075,
+    "outputCostPerMillion": 0.3,
+    "maxContextTokens": 1048576,
+    "defaultParams": {
+      "temperature": 0.7,
+      "maxTokens": 4096
+    },
+    "fallbackModel": "claude-3-5-sonnet"
+  },
+  {
+    "id": "gemini-3.1-pro-preview",
+    "name": "Gemini 3.1 Pro",
+    "provider": "gemini",
+    "capabilities": ["chat", "reasoning", "coding", "vision", "ocr", "summarization", "translation", "classification", "extraction", "planning", "research", "automation"],
+    "inputCostPerMillion": 1.25,
+    "outputCostPerMillion": 5.0,
+    "maxContextTokens": 2097152,
+    "defaultParams": {
+      "temperature": 0.5,
+      "maxTokens": 8192
+    },
+    "fallbackModel": "claude-3-5-sonnet"
+  },
+  {
+    "id": "gpt-4o",
+    "name": "GPT-4o",
+    "provider": "openai",
+    "capabilities": ["chat", "coding", "vision", "ocr", "summarization", "translation", "classification", "extraction", "planning", "research", "automation"],
+    "inputCostPerMillion": 2.5,
+    "outputCostPerMillion": 10.0,
+    "maxContextTokens": 128000,
+    "defaultParams": {
+      "temperature": 0.7,
+      "maxTokens": 4096
+    },
+    "fallbackModel": "claude-3-5-sonnet"
+  },
+  {
+    "id": "gpt-4o-mini",
+    "name": "GPT-4o Mini",
+    "provider": "openai",
+    "capabilities": ["chat", "coding", "vision", "ocr", "summarization", "translation", "classification", "extraction"],
+    "inputCostPerMillion": 0.15,
+    "outputCostPerMillion": 0.6,
+    "maxContextTokens": 128000,
+    "defaultParams": {
+      "temperature": 0.7,
+      "maxTokens": 4096
+    },
+    "fallbackModel": "gemini-3.5-flash"
+  },
+  {
+    "id": "claude-3-5-sonnet",
+    "name": "Claude 3.5 Sonnet",
+    "provider": "claude",
+    "capabilities": ["chat", "coding", "vision", "ocr", "summarization", "translation", "classification", "extraction", "planning", "research", "automation"],
+    "inputCostPerMillion": 3.0,
+    "outputCostPerMillion": 15.0,
+    "maxContextTokens": 200000,
+    "defaultParams": {
+      "temperature": 0.5,
+      "maxTokens": 4096
+    },
+    "fallbackModel": "gpt-4o"
+  },
+  {
+    "id": "claude-3-opus",
+    "name": "Claude 3 Opus",
+    "provider": "claude",
+    "capabilities": ["chat", "reasoning", "coding", "summarization", "translation", "planning", "research"],
+    "inputCostPerMillion": 15.0,
+    "outputCostPerMillion": 75.0,
+    "maxContextTokens": 200000,
+    "defaultParams": {
+      "temperature": 0.5,
+      "maxTokens": 4096
+    },
+    "fallbackModel": "gemini-3.1-pro-preview"
+  },
+  {
+    "id": "deepseek-chat",
+    "name": "DeepSeek Chat (V3)",
+    "provider": "deepseek",
+    "capabilities": ["chat", "coding", "summarization", "translation", "classification", "extraction"],
+    "inputCostPerMillion": 0.14,
+    "outputCostPerMillion": 0.28,
+    "maxContextTokens": 64000,
+    "defaultParams": {
+      "temperature": 0.7,
+      "maxTokens": 4096
+    },
+    "fallbackModel": "gpt-4o-mini"
+  },
+  {
+    "id": "deepseek-reasoner",
+    "name": "DeepSeek Reasoner (R1)",
+    "provider": "deepseek",
+    "capabilities": ["chat", "reasoning", "coding", "planning", "research"],
+    "inputCostPerMillion": 0.55,
+    "outputCostPerMillion": 2.19,
+    "maxContextTokens": 64000,
+    "defaultParams": {
+      "temperature": 0.6,
+      "maxTokens": 8192
+    },
+    "fallbackModel": "gemini-3.1-pro-preview"
+  },
+  {
+    "id": "llama-4",
+    "name": "Llama 4",
+    "provider": "llama",
+    "capabilities": ["chat", "coding", "summarization", "translation", "classification"],
+    "inputCostPerMillion": 0.2,
+    "outputCostPerMillion": 0.4,
+    "maxContextTokens": 128000,
+    "defaultParams": {
+      "temperature": 0.7,
+      "maxTokens": 4096
+    },
+    "fallbackModel": "deepseek-chat"
+  },
+  {
+    "id": "mistral-large",
+    "name": "Mistral Large",
+    "provider": "mistral",
+    "capabilities": ["chat", "coding", "summarization", "translation", "classification"],
+    "inputCostPerMillion": 2.0,
+    "outputCostPerMillion": 6.0,
+    "maxContextTokens": 128000,
+    "defaultParams": {
+      "temperature": 0.7,
+      "maxTokens": 4096
+    },
+    "fallbackModel": "gpt-4o"
+  },
+  {
+    "id": "grok-2",
+    "name": "Grok 2",
+    "provider": "grok",
+    "capabilities": ["chat", "coding", "vision", "summarization", "translation"],
+    "inputCostPerMillion": 2.0,
+    "outputCostPerMillion": 10.0,
+    "maxContextTokens": 128000,
+    "defaultParams": {
+      "temperature": 0.7,
+      "maxTokens": 4096
+    },
+    "fallbackModel": "claude-3-5-sonnet"
+  }
+]

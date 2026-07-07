@@ -51,7 +51,7 @@ export function SplineViewer({ sceneUrl = "https://prod.spline.design/kZiS7h00qS
   const { splineProgress, setSplineProgress, addNotification } = useOS();
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [useFallback, setUseFallback] = useState(false);
+  const [useFallback, setUseFallback] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const handleSplineLoad = () => {
@@ -66,6 +66,13 @@ export function SplineViewer({ sceneUrl = "https://prod.spline.design/kZiS7h00qS
     setSplineProgress(100);
     addNotification("Spline Bypass Active", "Using spatial HTML Canvas rendering due to sandbox restrictions.", "warning");
   };
+
+  // Sync progress when fallback is active
+  useEffect(() => {
+    if (useFallback || hasError) {
+      setSplineProgress(100);
+    }
+  }, [useFallback, hasError, setSplineProgress]);
 
   // Global uncaught error and promise rejection listeners to intercept async Spline failures
   useEffect(() => {

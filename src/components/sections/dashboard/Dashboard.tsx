@@ -26,9 +26,16 @@ import { MemoryPanel } from "./MemoryPanel";
 import { VisionWorkspace } from "./VisionWorkspace";
 import { DesignSystem } from "./DesignSystem";
 import { Sparkles, MessageSquare, Menu, X, ArrowLeft } from "lucide-react";
+import { useDemoStore } from "../../../store/demoStore";
+import { PresentationControls } from "./PresentationControls";
+import { GuidedTour } from "./GuidedTour";
+import { JudgeModePanel } from "./JudgeModePanel";
+import { PitchModeOverlay } from "./PitchModeOverlay";
+import { ImpactDashboard } from "./ImpactDashboard";
 
 export function Dashboard() {
   const { mode, setMode, addNotification } = useOS();
+  const { isPresentationMode } = useDemoStore();
   const [activeTab, setActiveTab] = useState<SidebarTab>(SidebarTab.DASHBOARD);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
@@ -89,6 +96,8 @@ export function Dashboard() {
         return <SettingsPage />;
       case SidebarTab.DESIGN_SYSTEM:
         return <DesignSystem />;
+      case SidebarTab.IMPACT:
+        return <ImpactDashboard />;
       default:
         // Elegant fallback card for un-implemented items
         return (
@@ -138,7 +147,9 @@ export function Dashboard() {
         <Sidebar activeTab={activeTab} onTabChange={handleTabChange} />
 
         {/* Central Workspace frame view (Responsive padding bounds) */}
-        <main className="flex-1 lg:pl-20 xl:pr-96 transition-all duration-300">
+        <main className={`flex-1 transition-all duration-300 ${
+          isPresentationMode ? "lg:pl-24 xl:pr-12 max-w-5xl mx-auto scale-102 mt-4 space-y-10 font-sans" : "lg:pl-20 xl:pr-96"
+        }`}>
           
           {/* Mobile responsive toggle header bar */}
           <div className="flex lg:hidden items-center justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.01] backdrop-blur-xl mb-6">
@@ -175,7 +186,7 @@ export function Dashboard() {
         </main>
 
         {/* Right Side AI Operator Chat panel */}
-        <ChatPanel />
+        {!isPresentationMode && <ChatPanel />}
 
       </div>
 
@@ -278,6 +289,12 @@ export function Dashboard() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* Presentation/Demo Overlays and Controllers */}
+      <PresentationControls />
+      <GuidedTour />
+      <JudgeModePanel />
+      <PitchModeOverlay />
 
     </div>
   );

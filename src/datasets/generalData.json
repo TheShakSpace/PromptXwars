@@ -1,0 +1,19 @@
+{
+  "stats": [
+    { "id": "stat-1", "label": "MODEL COGNITION SPEED", "value": "142 ms", "change": "+12.4%", "isPositive": true, "metricType": "time" },
+    { "id": "stat-2", "label": "CONTEXT THREAD BUFFER", "value": "98.4%", "change": "+0.8%", "isPositive": true, "metricType": "percentage" },
+    { "id": "stat-3", "label": "SYNAPSE TOKEN DEPOT", "value": "142,850", "change": "+24k", "isPositive": true, "metricType": "integer" }
+  ],
+  "tasks": [
+    { "id": "t-1", "text": "Secure cryptographic handshakes with model operator", "completed": true, "date": "Today" },
+    { "id": "t-2", "text": "Prune active VRAM leak allocations in canvas containers", "completed": false, "date": "Tomorrow" },
+    { "id": "t-3", "text": "Configure index database rules on cloud consoles", "completed": false, "date": "Jul 10" }
+  ],
+  "charts": [
+    { "timestamp": "08:00", "throughput": 120, "latency": 140, "tokens": 850 },
+    { "timestamp": "10:00", "throughput": 145, "latency": 138, "tokens": 920 },
+    { "timestamp": "12:00", "throughput": 160, "latency": 130, "tokens": 1100 },
+    { "timestamp": "14:00", "throughput": 150, "latency": 145, "tokens": 1050 },
+    { "timestamp": "16:00", "throughput": 185, "latency": 125, "tokens": 1350 }
+  ]
+}

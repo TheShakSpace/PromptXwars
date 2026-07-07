@@ -11,6 +11,7 @@ import {
   Send, Brain, Cpu, Sparkles, Volume2, VolumeX, Copy, 
   RotateCcw, ThumbsUp, ThumbsDown, Check, Loader2, Play 
 } from "lucide-react";
+import { ModelRouter } from "../../../core/ModelRouter";
 
 interface Message {
   id: string;
@@ -59,48 +60,48 @@ export function ChatPanel() {
 
     setMessages((prev) => [...prev, userMsg]);
     setIsThinking(true);
-    setThinkingStep(1); // Thinking...
+    setThinkingStep(1); // Planning
 
-    // Step-by-step thinking timeline simulated
+    // Step-by-step thinking timeline transition synced to live execution
     setTimeout(() => {
-      setThinkingStep(2); // Reasoning...
+      setThinkingStep(2); // Reasoning
       setTimeout(() => {
-        setThinkingStep(3); // Planning...
-        setTimeout(() => {
-          setThinkingStep(4); // Generating...
+        setThinkingStep(3); // Searching
+        setTimeout(async () => {
+          setThinkingStep(4); // Generating
 
-          // Mocking response synthesis based on input keywords
-          let aiResponse = "";
-          const lowerText = text.toLowerCase();
-          if (lowerText.includes("explain") || lowerText.includes("algorithm")) {
-            aiResponse = `### Cognitive Algorithm Synthesis\n\n\`\`\`typescript\n// Binary search optimization\nexport function binarySearch<T>(list: T[], target: T): number {\n  let low = 0, high = list.length - 1;\n  while (low <= high) {\n    const mid = (low + high) >> 1;\n    if (list[mid] === target) return mid;\n    list[mid] < target ? low = mid + 1 : high = mid - 1;\n  }\n  return -1;\n}\n\`\`\`\n- **Big-O Scale**: $O(\\log n)$ comparison speed.\n- **VRAM profile**: In-place pointer variables occupy $O(1)$ memory footprints.`;
-          } else if (lowerText.includes("summarize") || lowerText.includes("file")) {
-            aiResponse = `### Code File High-Level Analysis\n\n1. **Core Interface Exports**: Exposes \`Topbar\`, \`Sidebar\`, and \`StatusCard\` modules.\n2. **State Subsystem**: Synchronized dynamically via \`OSProvider\` context.\n3. **Design Framework**: Adheres to glassmorphism, with soft blur backplates and customizable visual glows.`;
-          } else if (lowerText.includes("debug") || lowerText.includes("memory")) {
-            aiResponse = `### Memory Allocation Audit Report\n\n- **Issue Detected**: Latent \`useEffect\` hook lack cleanup triggers on canvas frame resize subscriptions.\n- **Resolution**: Return cleanups systematically:\n\`\`\`typescript\nuseEffect(() => {\n  const obs = new ResizeObserver(cb);\n  obs.observe(el);\n  return () => obs.disconnect(); // Correct leak!\n}, []);\n\`\`\``;
-          } else {
-            aiResponse = `### Synthesis Parameter Compiled successfully.\n\nYour instructions have been executed against \`${activeModel}\`.\n\n- **Response Speed**: 142 Tokens per second.\n- **Cryptographic Hash**: ECDSA_256 Validated.\n\nReady for spatial integration pipelines.`;
-          }
+          try {
+            const res = await ModelRouter.routeCompletion({
+              modelId: activeModel,
+              prompt: text,
+            });
 
-          setTimeout(() => {
-            setThinkingStep(5); // Completed!
+            setThinkingStep(5); // Formatting
+
             setTimeout(() => {
-              setIsThinking(false);
-              setThinkingStep(0);
+              setThinkingStep(6); // Completed
+              setTimeout(() => {
+                setIsThinking(false);
+                setThinkingStep(0);
 
-              const aiMsg: Message = {
-                id: `msg-ai-${Date.now()}`,
-                sender: "ai",
-                text: aiResponse,
-                timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-              };
-              setMessages((prev) => [...prev, aiMsg]);
-              addNotification("AI Synthesis Complete", "Processed response successfully.", "success");
+                const aiMsg: Message = {
+                  id: `msg-ai-${Date.now()}`,
+                  sender: "ai",
+                  text: res.text,
+                  timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+                };
+                setMessages((prev) => [...prev, aiMsg]);
+                addNotification("AI Synthesis Complete", "Processed response successfully.", "success");
+              }, 200);
             }, 300);
-          }, 1000);
-        }, 900);
-      }, 700);
-    }, 600);
+          } catch (err: any) {
+            setIsThinking(false);
+            setThinkingStep(0);
+            addNotification("Failover Triggered", `Error: ${err.message}`, "error");
+          }
+        }, 600);
+      }, 500);
+    }, 400);
   };
 
   const handleCopyText = (id: string, text: string) => {

@@ -1,0 +1,19 @@
+{
+  "stats": [
+    { "id": "fin-1", "label": "QUANT VALUATION RATE", "value": "24 ms", "change": "+8.1%", "isPositive": true, "metricType": "time" },
+    { "id": "fin-2", "label": "PORTFOLIO VOLATILITY", "value": "11.4%", "change": "-1.2%", "isPositive": true, "metricType": "percentage" },
+    { "id": "fin-3", "label": "HEDGING ENTRIES RUN", "value": "642,850", "change": "+140k", "isPositive": true, "metricType": "integer" }
+  ],
+  "tasks": [
+    { "id": "fint-1", "text": "Execute algorithmic hedge adjustments on high-yield accounts", "completed": true, "date": "10:00 AM" },
+    { "id": "fint-2", "text": "Validate SEC-style audit compliance weights inside parser", "completed": false, "date": "Market Close" },
+    { "id": "fint-3", "text": "Prune stale limit-order memory slots to free buffer", "completed": false, "date": "Today" }
+  ],
+  "charts": [
+    { "timestamp": "08:00", "throughput": 500, "latency": 25, "tokens": 2000 },
+    { "timestamp": "10:00", "throughput": 720, "latency": 24, "tokens": 2800 },
+    { "timestamp": "12:00", "throughput": 850, "latency": 23, "tokens": 3400 },
+    { "timestamp": "14:00", "throughput": 680, "latency": 26, "tokens": 3100 },
+    { "timestamp": "16:00", "throughput": 920, "latency": 22, "tokens": 4200 }
+  ]
+}
